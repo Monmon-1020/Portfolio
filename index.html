@@ -3,97 +3,491 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ポートフォリオ</title>
+    <title>Yuna Matsunaga | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #09090b;
+            --bg-card: rgba(255,255,255,0.03);
+            --bg-card-hover: rgba(255,255,255,0.06);
+            --text: #e4e4e7;
+            --text-muted: #71717a;
+            --accent: #c084fc;
+            --accent2: #a855f7;
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(255,255,255,0.12);
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fff;
-            color: #4A2C2A;
-            margin: 0;
-            padding: 0;
+            font-family: 'Inter', 'Noto Sans JP', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        header {
-            background-color: #F8E1E7;
-            padding: 20px;
-            text-align: center;
+
+        ::selection { background: var(--accent); color: #fff; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ===== Layout ===== */
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 3.5rem 2rem 2rem;
         }
-        h1, h2 {
-            color: #4A2C2A;
+
+        /* ===== Hero ===== */
+        .hero {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
         }
-        section {
-            padding: 20px;
-            border-bottom: 1px solid #F8E1E7;
+
+        .hero h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
         }
-        a {
-            color: #D17B88;
-            text-decoration: none;
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, var(--accent2), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .hero-sub {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
         }
+
+        .hero-vision {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.6rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .hero-vision strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .hero-right {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            padding-top: 0.3rem;
+        }
+
+        .icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .icon-link:hover {
+            border-color: var(--border-hover);
+            color: var(--text);
+            background: var(--bg-card-hover);
+        }
+
+        .icon-link svg { width: 15px; height: 15px; }
+
+        /* ===== Tags ===== */
+        .tags-row {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+            margin-top: 0.6rem;
+        }
+
+        .tag {
+            font-size: 0.62rem;
+            padding: 0.18rem 0.55rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .tag.highlight {
+            border-color: rgba(192, 132, 252, 0.3);
+            color: #d8b4fe;
+            background: rgba(192, 132, 252, 0.06);
+        }
+
+        /* ===== Section ===== */
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-label {
+            font-size: 0.58rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        /* ===== List items (Research / Projects) ===== */
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg-card);
+            margin-bottom: 0.4rem;
+            transition: all 0.2s;
+            gap: 0.75rem;
+        }
+
+        .list-item:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .list-item h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+        }
+
+        .list-item h3 .sub {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-left: 0.3rem;
+        }
+
+        .list-item-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .badge {
+            font-size: 0.58rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 100px;
+            background: rgba(192, 132, 252, 0.1);
+            color: #d8b4fe;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        .item-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.7rem;
+            color: #d8b4fe;
+            font-weight: 500;
+            transition: gap 0.2s;
+            white-space: nowrap;
+        }
+
+        .item-link:hover { gap: 0.4rem; }
+        .item-link svg { width: 11px; height: 11px; }
+
+        /* ===== Achievements ===== */
+        .ach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4rem;
+        }
+
+        .ach {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg-card);
+            transition: all 0.2s;
+        }
+
+        .ach:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .ach-icon {
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .ach-text h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .ach-text span {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== Experience & Education ===== */
+        .exp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4rem;
+        }
+
+        .exp {
+            padding: 0.75rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg-card);
+            transition: all 0.2s;
+        }
+
+        .exp:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .exp h4 {
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .exp .role {
+            font-size: 0.65rem;
+            color: #d8b4fe;
+            font-weight: 500;
+        }
+
+        /* ===== English sub-text ===== */
+        .en {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-top: 0.1rem;
+            letter-spacing: 0.01em;
+        }
+
+        .list-item .en {
+            font-size: 0.7rem;
+            margin-top: 0;
+        }
+
+        .ach-text .en {
+            font-size: 0.6rem;
+            display: block;
+        }
+
+        /* ===== Education pills ===== */
+        .edu-row {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .edu-pill {
+            font-size: 0.65rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            background: var(--bg-card);
+        }
+
+        /* ===== Footer ===== */
         footer {
-            background-color: #F8E1E7;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            padding: 1rem 0;
             text-align: center;
-            padding: 10px;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 600px) {
+            .container { padding: 2rem 1.25rem 1.5rem; }
+
+            .hero { flex-direction: column; }
+            .hero-right { order: -1; }
+
+            .ach-grid, .exp-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .list-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.4rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>松長侑南 - ポートフォリオ</h1>
-</header>
+<div class="container">
 
-<section>
-    <h2>About Me</h2>
-    <p>名前：松長侑南（Yuna Matsunaga）</p>
-    <p>X：<a href="https://x.com/1o2o_o0" target="_blank">@una</a></p>
-    <p>年齢：16歳</p>
-    <p>所属：渋谷教育学園幕張高等学校</p>
-    <p>趣味：お菓子作り、体を動かすこと全般</p>
-</section>
+    <!-- Hero -->
+    <div class="hero">
+        <div>
+            <h1><span class="accent">Yuna Matsunaga</span></h1>
+            <p class="hero-sub">17歳 / 渋谷教育学園幕張高等学校 / AI Researcher & Engineer</p>
+            <p class="hero-vision">
+                <strong>「自由を支えるAI」</strong>を実装する。AIエージェントで生産を自動化し、人間が精神的幸福や創造に集中できる社会基盤を設計したい。
+            </p>
+            <p class="hero-vision en" style="margin-top: 0.3rem;">
+                Building <strong>"AI that supports freedom"</strong> — automating production through AI agents so people can focus on well-being and creativity.
+            </p>
+            <div class="tags-row">
+                <span class="tag highlight">AI Agent</span>
+                <span class="tag highlight">HCI</span>
+                <span class="tag">LLM</span>
+                <span class="tag">Creative AI</span>
+                <span class="tag">AI Ethics</span>
+                <span class="tag">Entrepreneurship</span>
+                <span class="tag">登山</span>
+                <span class="tag">一人旅</span>
+            </div>
+        </div>
+        <div class="hero-right">
+            <a href="https://github.com/Monmon-1020" target="_blank" class="icon-link" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://x.com/yunaMtmt" target="_blank" class="icon-link" aria-label="X">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+        </div>
+    </div>
 
-<section>
-    <h2>研究</h2>
-    <ul>
-        <li>LLM・AIエージェントに関する研究に注力。</li>
-        <li>東京大学松尾研究室の講座修了：GCI / 深層学習基礎 / 世界モデル</li>
-        <li>AI経営講座を受講中。</li>
-        <li>日本人工知能学会2025 採択：
-            <ul>
-                <li>Web Agentにおけるメタプロンプト駆動のエキスパート統合</li>
-                <li><a href="https://confit.atlas.jp/guide/event/jsai2025/subject/1B5-OS-41c-01/detail" target="_blank">発表リンク</a></li>
-            </ul>
-        </li>
-        <li>情報科学の達人（第6期）採択</li>
-    </ul>
-</section>
+    <!-- Research -->
+    <div class="section">
+        <p class="section-label">Research — HCI × AI Agent</p>
+        <div class="list-item">
+            <h3>GUI Agent<span class="sub">UI-Sketcher / SAG</span></h3>
+            <div class="list-item-right">
+                <span class="badge">JSAI 2025 採択 / 最年少発表</span>
+            </div>
+        </div>
+        <div class="list-item">
+            <div>
+                <h3>GUIヘルプ自動更新AIエージェント</h3>
+                <p class="en">GUI Help Auto-Update AI Agent</p>
+            </div>
+            <div class="list-item-right">
+                <span class="badge">情報処理学会 発表</span>
+            </div>
+        </div>
+    </div>
 
-<section>
-    <h2>プロジェクト</h2>
-    <ul>
-        <li>
-            <strong>Gen5</strong>：自然言語で画像編集ができるAIアプリ<br>
-            <a href="https://en3eyh3p-beta.gen5.app/" target="_blank">デモページ</a><br>
-            未踏ジュニア採択。誰でも直感的に使える編集体験を目指す。
-        </li>
-        <li>
-            <strong>SAG (Secure Agent Gateway)</strong>：AIエージェントの「手」となり「目」となるAIエージェントゲートウェイ<br>
-            <a href="https://github.com/Monmon-1020/thin-sag" target="_blank">GitHub</a><br>
-            エージェントのリクエストに応じて、ユーザー端末上でアクションを実行し、セキュリティを監視するゲートウェイ。
-        </li>
-    </ul>
-<section>
-    <h2>その他</h2>
-    <ul>
-        <li>EGOI日本代表選出（女子情報オリンピック）</li>
-        <li>株式会社燈にてソフトウェアエンジニアインターン</li>
-        <li>英検準1級</li>
-    </ul>
-</section>
+    <!-- Projects -->
+    <div class="section">
+        <p class="section-label">Projects</p>
+        <div class="list-item">
+            <h3>Gen5<span class="sub">AI Image Editor</span></h3>
+            <div class="list-item-right">
+                <a href="https://en3eyh3p-beta.gen5.app/" target="_blank" class="item-link">
+                    Demo <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+                </a>
+            </div>
+        </div>
+        <div class="list-item">
+            <h3>SAG<span class="sub">Secure Agent Gateway</span></h3>
+            <div class="list-item-right">
+                <a href="https://github.com/Monmon-1020/thin-sag" target="_blank" class="item-link">
+                    GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+                </a>
+            </div>
+        </div>
+        <div class="list-item">
+            <div>
+                <h3>総合型受験支援SaaS<span class="sub">開発中</span></h3>
+                <p class="en">Admission Support SaaS (In Development)</p>
+            </div>
+        </div>
+    </div>
 
-<footer>
-</footer>
+    <!-- Achievements -->
+    <div class="section">
+        <p class="section-label">Achievements</p>
+        <div class="ach-grid">
+            <div class="ach">
+                <div class="ach-icon">🥉</div>
+                <div class="ach-text"><h4>EGOI 2025 Bronze Medal</h4><span>European Girls' Olympiad in Informatics</span></div>
+            </div>
+            <div class="ach">
+                <div class="ach-icon">⚡</div>
+                <div class="ach-text"><h4>孫正義育英財団</h4><span>9期生</span><span class="en">Masayoshi Son Foundation Fellow (9th cohort)</span></div>
+            </div>
+            <div class="ach">
+                <div class="ach-icon">💡</div>
+                <div class="ach-text"><h4>未踏ジュニア</h4><span>採択</span><span class="en">MITOU Junior — Selected</span></div>
+            </div>
+            <div class="ach">
+                <div class="ach-icon">🎓</div>
+                <div class="ach-text"><h4>情報科学の達人</h4><span>第6期 修了</span><span class="en">Master of Computer Science Program</span></div>
+            </div>
+            <div class="ach">
+                <div class="ach-icon">📄</div>
+                <div class="ach-text"><h4>JSAI 2025 論文採択</h4><span>最年少発表</span><span class="en">Youngest Presenter at JSAI 2025</span></div>
+            </div>
+            <div class="ach">
+                <div class="ach-icon">🏫</div>
+                <div class="ach-text"><h4>AI夏期講習 講師</h4><span>渋谷教育学園幕張高等学校</span><span class="en">AI Summer Course Instructor at Shibumaku</span></div>
+            </div>
+            <div class="ach">
+                <div class="ach-icon">🎤</div>
+                <div class="ach-text"><h4>情報処理学会全国大会 2026</h4><span>発表</span><span class="en">IPSJ National Convention 2026 — Presenter</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <p class="section-label">Education</p>
+        <div class="exp" style="margin-bottom: 0;">
+            <h4>渋谷教育学園幕張高等学校</h4>
+            <p class="en">Shibuyakyoikugakuen Makuhari Senior High School</p>
+            <div class="role">在籍 / Enrolled</div>
+        </div>
+        <div class="edu-row">
+            <span class="edu-pill">GCI (UTokyo Matsuo Lab)</span>
+            <span class="edu-pill">Deep Learning Fundamentals</span>
+            <span class="edu-pill">World Models</span>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Yuna Matsunaga</p>
+    </footer>
+
+</div>
 
 </body>
 </html>
